@@ -1,14 +1,25 @@
 /* Basic Styles */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: sans-serif;
   margin: 0;
   background-color: #f8f9fa;
+  line-height: 1.6;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+/* Responsive Images */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Header */
@@ -32,13 +43,20 @@ nav {
 .nav-links {
   display: flex;
   align-items: center;
+  gap: 15px;
 }
 
 .nav-links a {
   text-decoration: none;
   color: #333;
-  margin: 0 15px;
   font-weight: 500;
+  white-space: nowrap;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .nav-links input {
@@ -51,8 +69,42 @@ nav {
 .nav-links .search {
   background: var(--color-red-57, #ea383e);
   border-radius: 5px;
-  /* border-color: var(--color-red-57, #ea383e);*/
   border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.nav-links .search img {
+  width: 16px;
+  height: 16px;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
 }
 
 .btn {
@@ -453,4 +505,326 @@ footer {
 .join {
   margin-left: 30%;
   margin-right: 30%;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet Styles (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .courses-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .partner-logos {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+}
+
+/* Mobile Styles (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  /* Navigation */
+  .hamburger {
+    display: flex;
+    z-index: 1001;
+    position: relative;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background-color: #fff;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 80px 20px 20px;
+    transition: right 0.3s ease;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow-y: auto;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  /* Mobile menu backdrop */
+  .nav-links.active::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+
+  .nav-links a {
+    margin: 10px 0;
+    font-size: 18px;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .search-container {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  .nav-links input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 60px 0;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+
+  .hero p {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .hero-buttons .btn {
+    margin-right: 0;
+    width: 200px;
+    text-align: center;
+  }
+
+  /* Grids */
+  .courses-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .categories-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Partner logos */
+  .partner-logos {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .partner-logos img {
+    height: 30px;
+  }
+
+  /* Forms */
+  .search-courses form {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .search-courses input,
+  .search-courses select {
+    width: 100%;
+  }
+
+  .build-skills form {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .build-skills input[type="email"] {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  /* Typography */
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .partners h2,
+  .professional-courses h2,
+  .new-courses h2,
+  .why-lrea h2,
+  .explore-lrea h2 {
+    font-size: 20px;
+  }
+
+  .build-skills h2 {
+    font-size: 24px;
+  }
+
+  /* Footer */
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .social-media {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  /* Spacing adjustments */
+  .join {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .feature-item {
+    padding: 20px;
+  }
+}
+
+/* Small Mobile Styles (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 8px;
+  }
+
+  .logo img {
+    height: 60px;
+    width: 90px;
+  }
+
+  .hero {
+    padding: 40px 0;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .hero-buttons .btn {
+    width: 180px;
+    padding: 12px 15px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-item {
+    padding: 15px;
+  }
+
+  .course-card h3 {
+    font-size: 14px;
+  }
+
+  .course-card p {
+    font-size: 12px;
+  }
+
+  .category-card {
+    padding: 10px;
+  }
+
+  .category-card span {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .testimonial-card {
+    padding: 15px;
+  }
+
+  .footer-links {
+    gap: 20px;
+  }
+
+  .social-media a {
+    margin-left: 10px;
+    font-size: 16px;
+  }
+}
+
+/* Large Desktop Styles (min-width: 1200px) */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1400px;
+  }
+
+  .courses-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+
+  .hero h1 {
+    font-size: 56px;
+  }
+
+  .hero p {
+    font-size: 20px;
+  }
 }
